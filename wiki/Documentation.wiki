@@ -7,9 +7,11 @@ TSCM's Xml Formatter has been designed to run from the parent POM file of a mave
 
 = Default Values =
 
+{{{
 useTabs = false                         Formats using 4 spaces.
 includes = {"**/*.xml"}                 Includes all XML files, including the parent POM files.
 excludes = {"**/target/**"}             Excludes all XML files in the 'target' folder.
+}}}
 
 = Including the Plugin in your Project =
 
@@ -36,19 +38,21 @@ To use this plugin, you must include the following code in the parent module's P
 
 To run this plugin, use *one* of the following commands:
 
-    mvn tscm:xmlFormatter
+    {{{mvn tscm:xmlFormatter}}}
 
             or
 
-    mvn org.technicalsoftwareconfigurationmanagement.maven-plugin:tscm-maven-plugin:2.1-SNAPSHOT:xmlFormatter
+    {{{mvn org.technicalsoftwareconfigurationmanagement.maven-plugin:tscm-maven-plugin:2.1-SNAPSHOT:xmlFormatter}}}
 
             or
 
-    mvn org.technicalsoftwareconfigurationmanagement.maven-plugin:tscm-maven-plugin:xmlFormatter
+    {{{mvn org.technicalsoftwareconfigurationmanagement.maven-plugin:tscm-maven-plugin:xmlFormatter}}}
 
 The second command will run a specific version (in this case 2.1-SNAPSHOT), while the third command will run the newest version it can find.  *By default, the plugin will format using spaces.  If you want to format using tabs instead, run the following command:*
 
-    mvn tscm:xmlFormatter -DxmlFormatter.useTabs="true"
+
+    {{{mvn tscm:xmlFormatter -DxmlFormatter.useTabs="true"}}}
+
 
 That's all you need to do to run this plugin!  If you would like to modify which files are included/excluded, read the next secion, otherwise all xml files not in the _target_ folder.
 
