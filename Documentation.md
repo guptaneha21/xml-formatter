@@ -1,0 +1,85 @@
+# Introduction #
+
+TSCM's Xml Formatter has been designed to run from the parent POM file of a maven project.  The formatter will scan the project recursively looking for XML files to format.  The plugin comes with two arrays, the 'includes' and 'excludes' arrays, which allow you to choose which XML files to format.  Note that the files are all relative to the parent module's base directory.  The files may be formatted using either tabs or spaces, by setting the useTabs parameter.
+
+# Default Values #
+
+```
+useTabs = false                         Formats using 4 spaces.
+includes = {"**/*.xml"}                 Includes all XML files, including the parent POM files.
+excludes = {"**/target/**"}             Excludes all XML files in the 'target' folder.
+```
+
+# Including the Plugin in your Project #
+
+To use this plugin, you must include the following code in the parent module's POM file:
+
+```
+<project>
+    ...
+    <build>
+        ...
+        <plugins>
+            ...
+            <plugin>
+                <groupId>org.technicalsoftwareconfigurationmanagement.maven-plugin</groupId>
+                <artifactId>tscm-maven-plugin</artifactId>
+                <version>2.1-SNAPSHOT</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+# Running the Plugin #
+
+To run this plugin, use **one** of the following commands:
+
+> `mvn tscm:xmlFormatter`
+
+> or
+
+> `mvn org.technicalsoftwareconfigurationmanagement.maven-plugin:tscm-maven-plugin:2.1-SNAPSHOT:xmlFormatter`
+
+> or
+
+> `mvn org.technicalsoftwareconfigurationmanagement.maven-plugin:tscm-maven-plugin:xmlFormatter`
+
+The second command will run a specific version (in this case 2.1-SNAPSHOT), while the third command will run the newest version it can find.  **By default, the plugin will format using spaces.  If you want to format using tabs instead, run the following command:**
+
+
+> `mvn tscm:xmlFormatter -DxmlFormatter.useTabs="true"`
+
+
+That's all you need to do to run this plugin!  If you would like to modify which files are included/excluded, read the next secion, otherwise all xml files not in the _target_ folder.
+
+# Configuring the Plugin #
+
+To decide which files to format you can use the plugin's configurable 'includes' and 'excludes' arrays.  For example, in the POM file you could do:
+
+```
+<project>
+    ...
+    <build>
+        ...
+        <plugins>
+            ...
+            <plugin>
+                <groupId>org.technicalsoftwareconfigurationmanagement.maven-plugin</groupId>
+                <artifactId>tscm-maven-plugin</artifactId>
+                <version>2.1-SNAPSHOT</version>
+                <configuration>
+                    <includes>
+                        <include>**/*.xml</include>
+                    </includes>
+                    <excludes>
+                        <exclude>**/target/**</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+_Note:  The above code is what the default values would look like if they were laid out explicitly in the parent pom._
